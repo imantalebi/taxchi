@@ -1,7 +1,6 @@
 const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const path = require('node:path');
 const fs = require('fs');
-const { bootstrap } = require('./dist/src/main');
 
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -12,7 +11,7 @@ const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1400, height: 700,
-  
+
     frame: false,
     titleBarStyle: 'hidden',
     titleBarOverlay: {
@@ -39,22 +38,24 @@ const createWindow = () => {
   // mainWindow.webContents.openDevTools();
 };
 ipcMain.on('appVersion', (event) => {
- 
-    event.returnValue = app.getVersion()
-  
+
+  event.returnValue = app.getVersion()
+
 });
- ipcMain.on('backUpRestore', (event,arg) => {
-  console.log(  arg)
-  try { 
-    // Buffer.from(new Uint8Array(this.result))
-    // bootstrap(true);
-    //  file = new Blob([buffer], {type: fileType});
-    fs.writeFileSync('../../taxchiDataBase.db', JSON.parse(arg), 'utf-8');
-    // bootstrap();
-   }
-  catch(e) { 
-console.log(e)
-   }
+ipcMain.on('backUpRestore', (event, arg) => {
+
+  res = JSON.parse(arg)
+  try {
+
+    const buffer = Buffer.from(res);
+
+    fs.createWriteStream('./resources/taxchiDataBase.db').write(buffer)
+
+
+  }
+  catch (e) {
+    console.log(e)
+  }
 
 });
 // This method will be called when Electron has finished
