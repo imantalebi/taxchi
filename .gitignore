@@ -35,7 +35,9 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-
+src/taxchi-interface
+src/dist
+taxchiDataBase.db
 # TypeScript v1 declaration files
 typings/
 

@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../../taxchiDataBase.db"
+}
+
+model Product {
+  id        Int    @id @default(autoincrement())
+  code      String
+  title     String
+  vra       Int
+  unit      Int
+  unitTitle String
+}
+
+model Invoice {
+  id              Int           @id @default(autoincrement())
+  title           String
+  invoiceNumber   BigInt
+  meli            String?
+  postalCode      String?
+  customerType    Int
+  inty            Int
+  ins             Int
+  irtaxid         String?
+  uid             String?
+  referenceNumber String?
+  taxId           String?
+  state           Int           @default(0)
+  status          Int           @default(0)
+  invDate         Int
+  createDate      DateTime      @default(now())
+  InvoiceBody     InvoiceBody[]
+}
+
+model InvoiceBody {
+  id      Int     @id @default(autoincrement())
+  invoice Invoice @relation(fields: [invId], references: [id], onDelete: Cascade)
+  invId   Int
+  amount  BigInt
+  unit    Int
+  count   Int
+  moCode  String
+  title   String
+  vra     Int
+}
+
+model Unit {
+  id    Int    @id @default(autoincrement())
+  title String
+  code  Int
+}
+
+model setting {
+  id      Int    @unique
+  key     String
+  cer     String
+  yekta   String
+  orgMeli String
+}

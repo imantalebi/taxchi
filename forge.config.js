@@ -3,13 +3,24 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 
 module.exports = {
   packagerConfig: {
+    icon: __dirname + '/logo.ico',
     asar: true,
+    extraResource: [
+      "./taxchiDataBase.db"
+
+    ]
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+        setupExe: 'taXChi-setup.exe',
+        iconUrl: __dirname + '/logo.ico',
+        setupIcon: __dirname + '/logo.ico',
+        loadingGif:__dirname + '/loading.gif',
+
+      },
     },
     {
       name: '@electron-forge/maker-zip',
