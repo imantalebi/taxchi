@@ -51,5 +51,17 @@ module.exports = {
       [FuseV1Options.EnableEmbeddedAsarIntegrityValidation]: true,
       [FuseV1Options.OnlyLoadAppFromAsar]: true,
     }),
-  ],
+  ],publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'imantalebi',
+          name: 'taxchi'
+        },
+        prerelease: false,
+        draft: true
+      }
+    }
+  ]
 };
