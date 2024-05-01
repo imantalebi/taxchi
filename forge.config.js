@@ -60,7 +60,7 @@ module.exports = {
           name: 'taxchi'
         },
         prerelease: false,
-        draft: false
+        draft: true
       }
     }
   ]
