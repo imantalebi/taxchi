@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell, dialog, autoUpdater } = require('electron');
+const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const path = require('node:path');
 const fs = require('fs');
 
@@ -43,40 +43,6 @@ const createWindow = () => {
 ipcMain.on('appVersion', (event) => {
 
   event.returnValue = app.getVersion()
-
-});
-ipcMain.on('checkUpdate', (event) => {
-
-
-
-  const server = 'https://update.electronjs.org'
-  const feed = `${server}/imantalebi/taxchi/${process.platform}-${process.arch}/${app.getVersion()}`
-
-  autoUpdater.setFeedURL(feed)
-  try {
-    autoUpdater.checkForUpdates()
-    autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-      const dialogOpts = {
-        type: 'info',
-        buttons: ['ریست کن', 'الان نه!'],
-        title: 'Application Update',
-        message: process.platform === 'win64' ? releaseNotes : releaseName,
-        detail:
-          'برنامه آپدیت شد برای استفاده برنامه را ریست کنید',
-      }
-
-      dialog.showMessageBox(dialogOpts).then((returnValue) => {
-        if (returnValue.response === 0) autoUpdater.quitAndInstall()
-      })
-    })
-    autoUpdater.on('error', (message) => {
-      console.error('There was a problem updating the application')
-      console.error(message)
-      // dialog.showMessageBox(message) 
-    })
-  } catch (error) {
-    dialog.showMessageBox(error)
-  }
 
 });
 ipcMain.on('backUpRestore', (event, arg) => {
