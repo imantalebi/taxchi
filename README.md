@@ -12,3 +12,21 @@
  taXChi-setup.exe  را دانلود و نصب کنید
 
  و یا از سایت تکس چی اقدام به دانلود کنید.
+## تصاویر برنامه
+<p align="center">
+  <a href="https://taxchiapp.com">
+    <img
+      src="https://taxchiapp.com/assets/img/help/setting.png"
+      alt="taxchiapp.com">
+  </a>
+   <a href="https://taxchiapp.com">
+    <img
+      src="https://taxchiapp.com/assets/img/help/products.png"
+      alt="taxchiapp.com">
+  </a>
+     <a href="https://taxchiapp.com">
+    <img
+      src="https://taxchiapp.com/assets/img/help/invoice2.png"
+      alt="taxchiapp.com">
+  </a>
+</p>
